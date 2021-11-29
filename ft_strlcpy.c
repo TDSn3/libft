@@ -6,7 +6,7 @@
 /*   By: tda-silv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 17:32:40 by tda-silv          #+#    #+#             */
-/*   Updated: 2021/11/25 21:12:20 by tda-silv         ###   ########.fr       */
+/*   Updated: 2021/11/29 09:28:31 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include <string.h>
 
 size_t	ft_strlen(const char *s);
-void	*ft_memmove(void *dest, const void *src, size_t n);
 void	*ft_memcpy(void *dest, const void *src, size_t n);
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t size)
@@ -26,11 +25,12 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 		ft_memcpy(dst, src, size);
 		if (size < ft_strlen(src))
 			dst[ft_strlen(dst) - 1] = '\0';
+		else
+			dst[ft_strlen(dst)] = '\0';
 	}	
-
 	return (ft_strlen(src));
 }
-
+/*
 #include <bsd/string.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -50,14 +50,14 @@ int	main(void)
 	printf("\n\n----\n\n");
 
 //----
-	strlcpy(tab2, tab, 90);
+	strlcpy(tab2, tab, 5);
 //----
 
 	printf("strlcpy\t||%s ", tab2);
 	printf("\n");
 
 //----
-	ft_strlcpy(tab3, tab, 90);
+	ft_strlcpy(tab3, tab, 5);
 //----
 	
 	printf("ft_\t||%s ", tab3);
@@ -67,3 +67,4 @@ int	main(void)
 	free(tab3);	
 	return (0);
 }
+*/
