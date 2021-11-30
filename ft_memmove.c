@@ -6,7 +6,7 @@
 /*   By: tda-silv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 17:22:17 by tda-silv          #+#    #+#             */
-/*   Updated: 2021/11/29 09:28:24 by tda-silv         ###   ########.fr       */
+/*   Updated: 2021/11/30 18:47:21 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,16 @@
 #include <stdlib.h>
 
 void	*ft_memcpy(void *dest, const void *src, size_t n);
-/*
+
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	char	*copy;
+	void	*copy;
 
-//	ft_memcpy(copy, src, n);
-//	ft_memcpy(dest, copy, n);
-	size_t  i;
-
-	i = 0;
-	while (i < n)
-	{
-		*copy = ((char *)src)[i];
-		((char *)dest)[i] = *copy;
-		i++;
-	}
+	ft_memcpy(copy, src, n);
+	ft_memcpy(dest, copy, n);
 	return (dest);
 }
-
+/*
 #include <stdio.h>
 
 int	main(void)
