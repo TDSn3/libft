@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tda-silv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/01 13:31:35 by tda-silv          #+#    #+#             */
-/*   Updated: 2021/12/02 14:05:55 by tda-silv         ###   ########.fr       */
+/*   Created: 2021/12/02 10:51:15 by tda-silv          #+#    #+#             */
+/*   Updated: 2021/12/02 12:14:20 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,18 @@
 size_t	ft_strlen(const char *s);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 
-char	*ft_strdup(const char *s)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*copy;
+	size_t	i;
 
-	copy = malloc((ft_strlen(s) + 1) * sizeof(char));
+	i = 0;
+	copy = malloc(ft_strlen(s));
 	if (!copy)
 		return (NULL);
-	ft_strlcpy(copy, s, ft_strlen(s) + 1);
+	if (!s || start > ft_strlen(s))
+		return (copy);
+	ft_strlcpy(copy, s + start, len);
 	return (copy);
 }
 /*
@@ -31,10 +35,9 @@ char	*ft_strdup(const char *s)
 
 int	main(void)
 {
-	char	tab1[] = "";
-	char	*copy1;
+	char	*s1;
+	char	*copy1 = ft_substr(s1, 5, 10);
 
-	copy1 = ft_strdup(tab1);
 	printf("\n%s\n\n", copy1);
 	return (0);
 }

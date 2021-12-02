@@ -6,7 +6,7 @@
 /*   By: tda-silv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 17:32:40 by tda-silv          #+#    #+#             */
-/*   Updated: 2021/12/01 09:56:06 by tda-silv         ###   ########.fr       */
+/*   Updated: 2021/12/02 18:05:12 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 			dst[i] = src[i];
 			i++;
 		}
-		dst[i] = '\0';
+		if (size > ft_strlen(src))
+			dst[i] = '\0';
+		else
+			dst[i - 1] = '\0';
 	}
 	return (ft_strlen(src));
 }
