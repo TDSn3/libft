@@ -15,6 +15,7 @@
 #include <stdio.h> //
 
 char	*ft_strtrim(char const *s1, char const *set);
+size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 
 size_t	size_nbc(char *s2, char c)
 {
@@ -53,32 +54,43 @@ char	**ft_split(char const *s, char c)
 	char 	*s2;
 	size_t	nbc;
 	char	**ssplit;
+	size_t	i;
+	size_t	j;
 
+	i = 0;
+	j = 0;
 	s2 = ft_strtrim(s, &c);
 	nbc = size_nbc(s2, c);
 
-	*ssplit = malloc (nbc + 1);
-	while (nbc)
+	ssplit = (char **) malloc(sizeof (char *) * nbc + 1);	
+	while (i < nbc + 1)
 	{
-		*ssplit = malloc (cstrlen(s2, c));
-		nbc--;
+		ssplit[i] = malloc (cstrlen(s2, c));
+		i++;
 	}
-
-	
-	printf("\n%s | %ld || %ld\n\n", s2, nbc, cstrlen(s2, c));
+	i = 0;
+	while (i < nbc)
+	{
+		ft_strlcpy(ssplit[i], s2 + j, cstrlen(s2 + j, c));
+		j += cstrlen(s2, c);
+		i++;
+	}
+	ssplit[i] = 0;
 	free (s2);
+	return (ssplit);
 }
 
 int	main(void)
 {
-	char	s[] = "--Sa-l--ut-";
-//	char	**ssplit;
-	int		i = 0;
+	char	s[] = "--Super-test---";
+	char	**ssplit = NULL;
 
-/*	ssplit = */ft_split(s, '-');
-//	for (i = 0, *ssplit[i], i++;)
-//		printf("\n%s\n\n", *ssplit[i]);
-//	free(ssplit);
-	printf("\n%s\n\n", s);
+	ssplit = ft_split(s, '-');
+	printf("\n%s\n", s);
+	for (int i = 0; i < 3; i++)
+		printf("\n%s\n", ssplit[i]);
+
+	free(ssplit);
+
 	return (0);
 }
