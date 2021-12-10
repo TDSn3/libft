@@ -5,85 +5,95 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tda-silv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/09 10:51:54 by tda-silv          #+#    #+#             */
-/*   Updated: 2021/12/09 18:43:47 by tda-silv         ###   ########.fr       */
+/*   Created: 2021/12/10 12:15:18 by tda-silv          #+#    #+#             */
+/*   Updated: 2021/12/10 13:15:13 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h> //
-#include <stdlib.h>
 #include <stdlib.h>
 
 size_t	ft_strlen(const char *s);
 
-void	ft_mirror(char *s)
+void	ft_swap(char *s)
 {
-	size_t	start;
-	size_t	end;
+	size_t	a;
+	size_t	z;
 	int		copy;
 
-	start = 0;
-	end = ft_strlen(s) - 1;
-	while (start < end)
+	a = 0;
+	z = ft_strlen(s) - 1;
+	while (a < z)
 	{
-		copy = s[start];
-		s[start] = s[end];
-		s[end] = copy;
-		start++;
-		end--;
+		copy = s[a];
+		s[a] = s[z];
+		s[z] = copy;
+		a++;
+		z--;
 	}
+}
+
+void	ft_zero_or_neg(long int *n_copy, unsigned int *n_size, int *symbol)
+{
+	*n_size = 1;
+	if (*n_copy < 0)
+	{
+		*n_copy *= -1;
+		*symbol = 1;
+	}
+}
+
+char	*ft_cpy(unsigned int n_size, long int n_copy, char *s)
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	j = 1;
+	while (i < n_size)
+	{
+		s[i] = ((n_copy / j) % 10) + 48;
+		j *= 10;
+		i++;
+	}
+	s[i] = 0;
+	return (s);
 }
 
 char	*ft_itoa(int n)
 {
-	int		n_size;
-	int		n2;
-	int		i;
-	int		j;
-	int		negative;
-	char	*s;
+	long int		n_copy;
+	unsigned int	n_size;
+	int				symbol;
+	long int		n2;
+	char			*s;
 
-	i = 0;
-	j = 1;
+	n_copy = n;
 	n_size = 0;
-	negative = 0;
-	if (n == -0)
-		n_size++;
+	symbol = 0;
 	if (n <= 0)
-	{
-		n_size++;
-		n *= -1;
-		negative = 1;
-	}
-	n2 = n;
+		ft_zero_or_neg(&n_copy, &n_size, &symbol);
+	n2 = n_copy;
 	while (n2 > 0)
 	{
-		n2 = n2 / 10;
+		n2 /= 10;
 		n_size++;
 	}
 	s = malloc(n_size + 1);
 	if (!s)
 		return (NULL);
-	while (i < n_size)
-	{
-		s[i] = ((n / j) % 10) + 48;
-		j = j * 10;
-		i++;
-	}
-	s[i] = 0;
-	ft_mirror(s);
-	if (negative)
-	{
+	ft_swap(ft_cpy(n_size, n_copy, s));
+	if (symbol)
 		s[0] = '-';
-		i++;
-	}
 	return (s);
 }
+/*
+#include <stdio.h>
 
-int	main(void)
+int main(void)
 {
-	char	*s = ft_itoa(-2147483648);
-	printf("\ns:%s\n\n", s);
-	free(s);
-	return (0);
+    char    *s = ft_itoa(0); // -2147483648
+    printf("\ns:%s\n\n", s);
+    free(s);
+    return (0);
 }
+*/
