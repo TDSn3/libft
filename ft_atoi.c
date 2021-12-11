@@ -6,7 +6,7 @@
 /*   By: tda-silv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 17:58:31 by tda-silv          #+#    #+#             */
-/*   Updated: 2021/11/30 18:42:03 by tda-silv         ###   ########.fr       */
+/*   Updated: 2021/12/11 15:24:33 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@ int	ft_atoi(const char *nptr)
 {
 	unsigned int	i;
 	unsigned int	nb;
-	int				final_nb;
+	long int		final_nb;
 	int				if_is_negative;
 
 	i = 0;

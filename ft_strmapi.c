@@ -6,7 +6,7 @@
 /*   By: tda-silv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 13:18:30 by tda-silv          #+#    #+#             */
-/*   Updated: 2021/12/10 16:10:26 by tda-silv         ###   ########.fr       */
+/*   Updated: 2021/12/11 09:12:19 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,49 +14,51 @@
 
 size_t	ft_strlen(const char *s);
 
-char	ft_add(unsigned int nbr, char c)
-{
-	char	c2;
-	c2 = c;
-	c2 += nbr;
-	return (c2);
-}
-
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	char	*s2;
+	char	*s_after;
 	size_t	i;
 
-	s2 = malloc(ft_strlen(s) + 1);
-	if (!s2)
+	s_after = malloc(ft_strlen(s) + 1);
+	if (!s_after)
 		return (NULL);
 	i = 0;
 	while (i < ft_strlen(s))
 	{
-		s2[i] = *f;
+		s_after[i] = (*f)(i, s[i]);
 		i++;
 	}
-	s2[i] = 0;
-	return (s2);
+	s_after[i] = 0;
+	return (s_after);
+}
+/*
+#include <stdio.h>
+
+// FONCTION FT_ADD A DEPLACER //
+
+char	ft_add(unsigned int nbr, char c)
+{
+	c++;
+	return (c);
 }
 
-#include <stdio.h>
+//----------------------------//
 
 int	main(void)
 {
 	char	c;
 	c = ft_add(1, 'a');
-	printf("\n%c\n\n", c);
+	printf("\n%c\n", c);
 
-	char	c2[] = "0abcdefghijkklmnopqrstuvwxy0";
+	char	s[] = "0abcdefghijkklmnopqrstuvwxy0";
 	char	*c3;
-	
+
 	char	(*f)(unsigned int, char);
 	f = ft_add;
-	(*f)(1, 'c');
-	
-	c3 = ft_strmapi(c2, f);
-	printf("\n%s\n", c3);
+
+	c3 = ft_strmapi(s, f);
+	printf("\n%s\n\n", c3);
 	free(c3);
 	return (0);
 }
+*/

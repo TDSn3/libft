@@ -6,13 +6,13 @@
 /*   By: tda-silv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:13:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2021/11/29 11:15:40 by tda-silv         ###   ########.fr       */
+/*   Updated: 2021/12/11 18:38:41 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isalpha(int c);
 
-int	ft_toupper(int c)
+int	ft_tolower(int c)
 {
 	if (c >= 'A' && c <= 'Z')
 		return (c += 32);
