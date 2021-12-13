@@ -6,7 +6,7 @@
 #    By: tda-silv <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/11 16:59:26 by tda-silv          #+#    #+#              #
-#    Updated: 2021/12/13 13:37:09 by tda-silv         ###   ########.fr        #
+#    Updated: 2021/12/13 14:16:11 by tda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRC = ./ft_isalpha.c \
 	  ./ft_isdigit.c \
 	  ./ft_isalnum.c \
 	  ./ft_isascii.c \
+	  ./ft_isprint.c \
 	  ./ft_strlen.c \
 	  ./ft_memset.c \
 	  ./ft_bzero.c \
