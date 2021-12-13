@@ -6,7 +6,7 @@
 /*   By: tda-silv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 10:51:15 by tda-silv          #+#    #+#             */
-/*   Updated: 2021/12/02 12:14:20 by tda-silv         ###   ########.fr       */
+/*   Updated: 2021/12/13 13:27:34 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*copy;
-	size_t	i;
 
-	i = 0;
 	copy = malloc(ft_strlen(s));
 	if (!copy)
 		return (NULL);

@@ -6,7 +6,7 @@
 /*   By: tda-silv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 11:15:35 by tda-silv          #+#    #+#             */
-/*   Updated: 2021/12/01 13:31:19 by tda-silv         ###   ########.fr       */
+/*   Updated: 2021/12/13 13:26:21 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void	*tab;
-	size_t	i;
 
 	tab = malloc(nmemb * size);
 	if (!tab)

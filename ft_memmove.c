@@ -6,26 +6,43 @@
 /*   By: tda-silv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 17:22:17 by tda-silv          #+#    #+#             */
-/*   Updated: 2021/11/30 18:47:21 by tda-silv         ###   ########.fr       */
+/*   Updated: 2021/12/13 13:23:18 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
-#include <string.h>
-#include <stdlib.h>
-
-void	*ft_memcpy(void *dest, const void *src, size_t n);
 
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	void	*copy;
+	size_t	i;
+	char	*d;
+	char	*s;
 
-	ft_memcpy(copy, src, n);
-	ft_memcpy(dest, copy, n);
+	d = (char *)dest;
+	s = (char *)src;
+	i = 0;
+	if (d > s)
+	{
+		while (n)
+		{
+			d[n- 1] = s[n- 1];
+			n--;
+		}
+	}
+	else
+	{
+		while (i < n)
+		{
+			d[i] = s[i];
+			i++;
+		}
+	}
 	return (dest);
 }
 /*
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 
 int	main(void)
 {
@@ -40,9 +57,9 @@ int	main(void)
 
 	printf("\n\n");
 
-	void *cpy = (void *) (tab + 1);
+	void *cpy = (void *) (tab + 0);
 
-	memmove(cpy, tab, 16);
+	memmove(cpy, tab + 8, 16);
 
 	tab[0] = 5;
 
@@ -62,9 +79,9 @@ int	main(void)
 
 	printf("\n\n");
 
-	void *cpy2 = (void *) (tab2 + 1);
+	void *cpy2 = (void *) (tab2 + 0);
 
-	ft_memmove(cpy2, tab2, 16);
+	ft_memmove(cpy2, tab2 + 8, 16);
 
 	tab2[0] = 5;
 
@@ -72,6 +89,19 @@ int	main(void)
 		printf("%d ", tab2[i]);
 
 	printf("\n\n");
+
+//----
+
+	char	tab3[] = "012";
+	printf("\n---\n\n%s\n", tab3);
+	ft_memmove(tab3, tab3 + 1, 2);
+	printf("%s\n\n", tab3);
+	
+	char	tab4[] = "012";
+	printf("\n---\n\n%s\n", tab4);
+	memmove(tab4, tab4 + 1, 2);
+	printf("%s\n\n", tab4);
+	
 	return (0);
 }
 */
