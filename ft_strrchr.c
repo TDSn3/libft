@@ -6,7 +6,7 @@
 /*   By: tda-silv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:22:50 by tda-silv          #+#    #+#             */
-/*   Updated: 2021/11/29 12:16:13 by tda-silv         ###   ########.fr       */
+/*   Updated: 2021/12/14 16:32:52 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,14 @@ size_t	ft_strlen(const char *s);
 
 char	*ft_strrchr(const char *s, int c)
 {
-	int	i;
+	size_t	i;
 
 	i = ft_strlen(s) - 1;
-	while (s[i] && i >= 0)
+	if (c == 0)
+		i++;
+	while (s[i] || (char)c == 0)
 	{
-		if (s[i] == c)
+		if (s[i] == (char)c)
 			return ((char *)s + i);
 		i--;
 	}
@@ -30,11 +32,15 @@ char	*ft_strrchr(const char *s, int c)
 /*
 #include <stdio.h>
 #include <string.h>
+#define SEARCH 's'
 
-int	main(void)
+int main(void)
 {
-	char	tab[] = "psuxer";
-	printf("\n%s\n\n", ft_strrchr(tab, 'p'));
-	return (0);
+    char    tab[] = "saluts";
+    printf("\n-- strrchr :%d", strrchr(tab, SEARCH));
+    printf("\nft_strrchr :%d ", ft_strrchr(tab, SEARCH));
+    strrchr(tab, SEARCH) == ft_strrchr(tab, SEARCH) ? 
+printf("OK\n\n") : printf("NO\n\n");
+    return (0);
 }
 */

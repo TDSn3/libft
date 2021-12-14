@@ -6,7 +6,7 @@
 /*   By: tda-silv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 10:51:15 by tda-silv          #+#    #+#             */
-/*   Updated: 2021/12/13 13:27:34 by tda-silv         ###   ########.fr       */
+/*   Updated: 2021/12/14 18:17:21 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*copy;
 
-	copy = malloc(ft_strlen(s));
+	copy = malloc(len);
 	if (!copy)
 		return (NULL);
 	if (!s || start > ft_strlen(s))
@@ -33,8 +33,8 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 
 int	main(void)
 {
-	char	*s1;
-	char	*copy1 = ft_substr(s1, 5, 10);
+	char	s1[] = "0123456789";
+	char	*copy1 = ft_substr(s1, 0, 10);
 
 	printf("\n%s\n\n", copy1);
 	return (0);

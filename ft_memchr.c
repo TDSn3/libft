@@ -6,7 +6,7 @@
 /*   By: tda-silv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 13:09:33 by tda-silv          #+#    #+#             */
-/*   Updated: 2021/11/30 18:42:36 by tda-silv         ###   ########.fr       */
+/*   Updated: 2021/12/14 17:16:52 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	size_t	i;
 
 	i = 0;
-	while (((char *)s)[i] && i < n)
+	while (i < n)
 	{
-		if (((char *)s)[i] == c)
+		if (((char *)s)[i] == (char)c)
 			return ((void *)s + i);
 		i++;
 	}
@@ -29,15 +29,18 @@ void	*ft_memchr(const void *s, int c, size_t n)
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define FOUND 33
+#define FOUND 258
+#define SIZE 3
 
 int 	main (void)
 {
-	char 	tab[] = { 5, 10, 15, 20, 25 };
+	char 	tab[] = { 0, 1, 2, 3, 4, 5 };
 	
-	printf("\n%s\n", (memchr(tab, FOUND, 5) != NULL ? "Found" : "Not found"));
-	printf("\n%s\n\n", (ft_memchr(tab, FOUND, 5) != NULL ? "Found" : "Not found"));
-
+	printf("\n-- memchr :%s\n", (memchr(tab, FOUND, SIZE) != NULL ?
+ "Found" : "Not found"));
+	printf("ft_memchr :%s ", (ft_memchr(tab, FOUND, SIZE) != NULL ?
+ "Found" : "Not found"));
+	memchr(tab, FOUND, SIZE) == ft_memchr(tab, FOUND, SIZE) ? printf("OK\n\n") : printf("\nNO\n");
 //	NE MARCHE QU'AVEC DES VALEURS TROUVABLES
 
 //	printf("\n%d\n", *(char *)memchr(tab, FOUND, 5));
