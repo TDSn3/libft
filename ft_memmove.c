@@ -6,7 +6,7 @@
 /*   By: tda-silv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 17:22:17 by tda-silv          #+#    #+#             */
-/*   Updated: 2021/12/13 13:52:44 by tda-silv         ###   ########.fr       */
+/*   Updated: 2021/12/27 15:53:12 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	d = (char *)dest;
 	s = (char *)src;
 	i = 0;
+	if (!dest && !src)
+		return (dest);
 	if (d > s)
 	{
 		while (n)
