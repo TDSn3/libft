@@ -6,7 +6,7 @@
 /*   By: tda-silv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 16:44:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2021/12/09 10:47:38 by tda-silv         ###   ########.fr       */
+/*   Updated: 2021/12/27 12:33:46 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*ft_strtrim(char const *s1, char const *set);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 size_t	ft_strlen(const char *s);
 
-size_t	size_nbc(char *s2, char c)
+static size_t	size_nbc(char *s2, char c)
 {
 	size_t	i;
 	size_t	nbc;
@@ -40,7 +40,7 @@ size_t	size_nbc(char *s2, char c)
 	return (nbc);
 }
 
-size_t	cstrlen(char *s2, char c)
+static size_t	cstrlen(char *s2, char c)
 {
 	size_t	i;
 
@@ -50,7 +50,7 @@ size_t	cstrlen(char *s2, char c)
 	return (i + 1);
 }
 
-size_t	ft_split_part_two(size_t nbc, char **ssplit, char *s2, char c)
+static size_t	ft_split_part_three(size_t nbc, char **ssplit, char *s2, char c)
 {
 	size_t	i;
 	size_t	j;
@@ -68,29 +68,52 @@ size_t	ft_split_part_two(size_t nbc, char **ssplit, char *s2, char c)
 	return (i);
 }
 
+static int	ft_split_part_two(size_t nbc, char **ssplit, char *s2, char c)
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	j = 0;
+	while (i < nbc + 1)
+	{
+		ssplit[i] = malloc (cstrlen(s2 + j, c));
+		if (!ssplit[i])
+		{
+			while (i > 0)
+			{
+				free(ssplit[i]);
+				i--;
+			}
+			free(ssplit);
+			free(s2);
+			return (1);
+		}
+		j += cstrlen(s2 + j, c);
+		i++;
+	}
+	return (0);
+}
+
 char	**ft_split(char const *s, char c)
 {
 	char	*s2;
 	size_t	nbc;
 	char	**ssplit;
 	size_t	i;
-	size_t	j;
 
-	i = 0;
-	j = 0;
 	s2 = ft_strtrim(s, &c);
 	nbc = size_nbc(s2, c);
 	ssplit = (char **) malloc(sizeof (char *) * nbc + 1);
-	if (nbc > 0)
+	if (!ssplit)
 	{
-		while (i < nbc + 1)
-		{
-			ssplit[i] = malloc (cstrlen(s2 + j, c));
-			j += cstrlen(s2 + j, c);
-			i++;
-		}
+		free(s2);
+		return (NULL);
 	}
-	i = ft_split_part_two(nbc, ssplit, s2, c);
+	if (nbc > 0)
+		if (ft_split_part_two(nbc, ssplit, s2, c))
+			return (NULL);
+	i = ft_split_part_three(nbc, ssplit, s2, c);
 	ssplit[i] = 0;
 	free (s2);
 	return (ssplit);

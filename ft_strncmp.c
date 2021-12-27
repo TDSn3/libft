@@ -6,7 +6,7 @@
 /*   By: tda-silv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 12:21:10 by tda-silv          #+#    #+#             */
-/*   Updated: 2021/11/29 12:43:14 by tda-silv         ###   ########.fr       */
+/*   Updated: 2021/12/27 12:06:13 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 
 int	main (void)
 {
-	char	tab1[] = "U\t--";
-	char	tab2[] = "--\tU";
-	int		a = strncmp(tab1 , tab2, 100);
-	int		b = ft_strncmp(tab1 , tab2, 100);
+	char	tab1[] = {-128};
+	char	tab2[] = {0};
+	int		a = strncmp(tab1 , tab2, 1);
+	int		b = ft_strncmp(tab1 , tab2, 1);
 
 	printf ("\n%d, %d\n\n", a, b);
 	return (0);

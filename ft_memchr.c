@@ -6,7 +6,7 @@
 /*   By: tda-silv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 13:09:33 by tda-silv          #+#    #+#             */
-/*   Updated: 2021/12/14 17:16:52 by tda-silv         ###   ########.fr       */
+/*   Updated: 2021/12/23 08:59:54 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ int 	main (void)
  "Found" : "Not found"));
 	printf("ft_memchr :%s ", (ft_memchr(tab, FOUND, SIZE) != NULL ?
  "Found" : "Not found"));
-	memchr(tab, FOUND, SIZE) == ft_memchr(tab, FOUND, SIZE) ? printf("OK\n\n") : printf("\nNO\n");
+	memchr(tab, FOUND, SIZE) == ft_memchr(tab, FOUND, SIZE) ? 
+printf("OK\n\n") : printf("\nNO\n");
 //	NE MARCHE QU'AVEC DES VALEURS TROUVABLES
 
 //	printf("\n%d\n", *(char *)memchr(tab, FOUND, 5));

@@ -6,7 +6,7 @@
 /*   By: tda-silv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 12:15:18 by tda-silv          #+#    #+#             */
-/*   Updated: 2021/12/10 13:15:13 by tda-silv         ###   ########.fr       */
+/*   Updated: 2021/12/27 12:35:00 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 size_t	ft_strlen(const char *s);
 
-void	ft_swap(char *s)
+static void	ft_swap(char *s)
 {
 	size_t	a;
 	size_t	z;
@@ -32,7 +32,7 @@ void	ft_swap(char *s)
 	}
 }
 
-void	ft_zero_or_neg(long int *n_copy, unsigned int *n_size, int *symbol)
+static void	ft_zero_or_neg(long int *n_copy, unsigned int *n_size, int *symbol)
 {
 	*n_size = 1;
 	if (*n_copy < 0)
@@ -42,7 +42,7 @@ void	ft_zero_or_neg(long int *n_copy, unsigned int *n_size, int *symbol)
 	}
 }
 
-char	*ft_cpy(unsigned int n_size, long int n_copy, char *s)
+static char	*ft_cpy(unsigned int n_size, long int n_copy, char *s)
 {
 	size_t	i;
 	size_t	j;

@@ -6,7 +6,7 @@
 /*   By: tda-silv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 14:11:42 by tda-silv          #+#    #+#             */
-/*   Updated: 2021/12/09 10:48:38 by tda-silv         ###   ########.fr       */
+/*   Updated: 2021/12/27 12:09:52 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 size_t	ft_strlen(const char *s);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 
-size_t	ft_setsize_l(char const *s1, char const *set)
+static size_t	ft_setsize_l(char const *s1, char const *set)
 {
 	size_t	i;
 	size_t	j;
@@ -38,7 +38,7 @@ size_t	ft_setsize_l(char const *s1, char const *set)
 	return (i);
 }
 
-size_t	ft_setsize_r(char const *s1, char const *set)
+static size_t	ft_setsize_r(char const *s1, char const *set)
 {
 	size_t	i;
 	size_t	j;
