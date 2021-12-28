@@ -6,21 +6,31 @@
 /*   By: tda-silv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 17:22:17 by tda-silv          #+#    #+#             */
-/*   Updated: 2021/12/27 15:53:12 by tda-silv         ###   ########.fr       */
+/*   Updated: 2021/12/28 14:28:26 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
 
-void	*ft_memmove(void *dest, const void *src, size_t n)
+static void	part_two(char *d, char *s, size_t n)
 {
 	size_t	i;
+
+	i = 0;
+	while (i < n)
+	{
+		d[i] = s[i];
+		i++;
+	}
+}
+
+void	*ft_memmove(void *dest, const void *src, size_t n)
+{
 	char	*d;
 	char	*s;
 
 	d = (char *)dest;
 	s = (char *)src;
-	i = 0;
 	if (!dest && !src)
 		return (dest);
 	if (d > s)
@@ -32,13 +42,7 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 		}
 	}
 	else
-	{
-		while (i < n)
-		{
-			d[i] = s[i];
-			i++;
-		}
-	}
+		part_two(d, s, n);
 	return (dest);
 }
 /*

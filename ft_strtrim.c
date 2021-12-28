@@ -6,7 +6,7 @@
 /*   By: tda-silv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 14:11:42 by tda-silv          #+#    #+#             */
-/*   Updated: 2021/12/27 12:09:52 by tda-silv         ###   ########.fr       */
+/*   Updated: 2021/12/28 13:45:00 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,12 @@
 
 size_t	ft_strlen(const char *s);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
+char	*ft_strdup(const char *s);
 
-static size_t	ft_setsize_l(char const *s1, char const *set)
+static int	ft_setsize_l(char const *s1, char const *set)
 {
-	size_t	i;
-	size_t	j;
+	int	i;
+	int	j;
 
 	if (!s1)
 		return (0);
@@ -38,10 +39,10 @@ static size_t	ft_setsize_l(char const *s1, char const *set)
 	return (i);
 }
 
-static size_t	ft_setsize_r(char const *s1, char const *set)
+static int	ft_setsize_r(char const *s1, char const *set)
 {
-	size_t	i;
-	size_t	j;
+	int	i;
+	int	j;
 
 	if (!s1)
 		return (0);
@@ -65,9 +66,15 @@ static size_t	ft_setsize_r(char const *s1, char const *set)
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	char	*copy;
-	size_t	i;
+	int		i;
 
+	if (!s1)
+		return (NULL);
+	if (!set)
+		return (ft_strdup(s1));
 	i = (ft_setsize_r(s1, set) + 1) - ft_setsize_l(s1, set) + 1;
+	if ((ft_setsize_r(s1, set) + 1) < ft_setsize_l(s1, set) + 1)
+		return (ft_strdup(""));
 	copy = malloc(i);
 	if (!copy)
 		return (NULL);
@@ -83,9 +90,10 @@ char	*ft_strtrim(char const *s1, char const *set)
 int	main(void)
 {
 	char	s1[] = "-------------t--t---";
-	char	*s11 = ft_strtrim(s1, "-");
+	char	*s11 = ft_strtrim(s1, "");
 
 	printf("\n%s\n\n", s11);
+	free(s11);
 	return (0);
 }
 */
