@@ -12,110 +12,121 @@
 
 #include <stddef.h>
 #include <stdlib.h>
+#include "libft.h"
+#include <stdio.h>
 
-char	*ft_strtrim(char const *s1, char const *set);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
-size_t	ft_strlen(const char *s);
+char	*ft_strdup(const char *s);
 
-static size_t	size_nbc(char *s2, char c)
-{
-	size_t	i;
-	size_t	nbc;
-
-	i = 0;
-	nbc = 1;
-	if (!s2 || ft_strlen(s2) == 0)
-		return (0);
-	while (s2[i])
-	{
-		if (s2[i] == c)
-		{
-			nbc++;
-			while (s2[i] == c)
-				i++;
-		}
-		else
-			i++;
-	}
-	return (nbc);
-}
-
-static size_t	cstrlen(char *s2, char c)
+static size_t	ft_cstrlen(char const *s, char c)
 {
 	size_t	i;
 
 	i = 0;
-	while (s2[i] && s2[i] != c)
+	while (s[i] && s[i] != c)
 		i++;
 	return (i + 1);
 }
 
-static size_t	ft_split_part_three(size_t nbc, char **ssplit, char *s2, char c)
+static size_t	ft_nbc(char const *s, char c)
 {
-	size_t	i;
-	size_t	j;
+	unsigned int	i;
+	size_t			j;
+
+	i = 0;
+	j = 1;
+	if (!s)
+		return (0);
+	while (s[i] && s[i] == c)
+		i++;
+	while (s[i])
+	{
+		if (s[i] == c)
+		{
+			j++;
+				while (s[i] && s[i] == c)
+					i++;
+				if (!s[i])
+					return (j - 1);
+				continue;
+		}
+		i++;
+	}
+	if (s[i - 1] != c)
+		j++;
+	return (j);
+}
+
+static size_t	ft_split_part_three(size_t nbc, char **ssplit, char const *s, char c)
+{
+	size_t  i;
+	size_t  j;
 
 	i = 0;
 	j = 0;
 	while (i < nbc)
 	{
-		ft_strlcpy(ssplit[i], s2 + j, cstrlen(s2 + j, c));
-		j += cstrlen(s2 + j, c);
-		while (*(s2 + j) == c)
+		while (*(s + j) == c)
 			j++;
+		ft_strlcpy(ssplit[i], s + j, ft_cstrlen(s + j, c));
+		j += ft_cstrlen(s + j, c);
 		i++;
 	}
 	return (i);
 }
 
-static int	ft_split_part_two(size_t nbc, char **ssplit, char *s2, char c)
+static int	ft_split_part_two(size_t nbc, char **ssplit, char const *s, char c)
 {
-	size_t	i;
-	size_t	j;
+	size_t  i;
+	size_t  j;
 
 	i = 0;
 	j = 0;
-	while (i < nbc + 1)
+
+	while (s[j] && i < nbc)
 	{
-		ssplit[i] = malloc (cstrlen(s2 + j, c));
-		if (!ssplit[i])
+		if (s[j] != c)
 		{
-			while (i > 0)
+			ssplit[i] = malloc (ft_cstrlen(s + j, c));
+			if (!ssplit[i])
 			{
-				free(ssplit[i]);
-				i--;
+				while (i > 0)
+				{
+					free(ssplit[i]);
+					i--;
+				}
+				free(ssplit);
+				return (1);
 			}
-			free(ssplit);
-			free(s2);
-			return (1);
+			j += ft_cstrlen(s + j, c);
+			i++;
 		}
-		j += cstrlen(s2 + j, c);
-		i++;
+		else
+			j++;
 	}
 	return (0);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char	*s2;
+	char 	**ssplit;
 	size_t	nbc;
-	char	**ssplit;
-	size_t	i;
+	size_t  i;
 
-	s2 = ft_strtrim(s, &c);
-	nbc = size_nbc(s2, c);
-	ssplit = (char **) malloc(sizeof (char *) * nbc + 1);
+	if (!s)
+		return ((char **)ft_strdup(""));
+	nbc = ft_nbc(s, c);
+	ssplit = (char **) malloc(sizeof (char *) * nbc);
 	if (!ssplit)
 	{
-		free(s2);
+		free(ssplit);
 		return (NULL);
 	}
-	if (nbc > 0)
-		if (ft_split_part_two(nbc, ssplit, s2, c))
+	if (nbc > 1)
+		if (ft_split_part_two(nbc - 1, ssplit, s, c))
 			return (NULL);
-	i = ft_split_part_three(nbc, ssplit, s2, c);
-	ssplit[i] = 0;
-	free (s2);
+	i = ft_split_part_three(nbc - 1, ssplit, s, c);
+	ssplit[i] = 0;	
 	return (ssplit);
 }
 /*
@@ -124,7 +135,6 @@ char	**ft_split(char const *s, char c)
 int	main(int argc, char **argv)
 {
 //	char	s[] = "";
-
 	char	**ssplit = NULL;
 
 	ssplit = ft_split(argv[1], '-');
