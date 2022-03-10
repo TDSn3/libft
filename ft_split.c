@@ -6,7 +6,7 @@
 /*   By: tda-silv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 16:44:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2021/12/28 14:02:11 by tda-silv         ###   ########.fr       */
+/*   Updated: 2022/03/10 17:39:56 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 char	*ft_strdup(const char *s);
+size_t	ft_strlen(const char *s);
 
 static size_t	ft_cstrlen(char const *s, char c)
 {
@@ -36,7 +37,7 @@ static size_t	ft_nbc(char const *s, char c)
 	i = 0;
 	j = 1;
 	if (!s)
-		return (0);
+		return (1);
 	while (s[i] && s[i] == c)
 		i++;
 	while (s[i])
@@ -46,8 +47,6 @@ static size_t	ft_nbc(char const *s, char c)
 			j++;
 				while (s[i] && s[i] == c)
 					i++;
-				if (!s[i])
-					return (j - 1);
 				continue;
 		}
 		i++;
@@ -113,7 +112,8 @@ char	**ft_split(char const *s, char c)
 	size_t	nbc;
 	size_t  i;
 
-	if (!s)
+	i = 0;
+	if (!s || !s[0])
 		return ((char **)ft_strdup(""));
 	nbc = ft_nbc(s, c);
 	ssplit = (char **) malloc(sizeof (char *) * nbc);
@@ -137,12 +137,12 @@ int	main(int argc, char **argv)
 //	char	s[] = "";
 	char	**ssplit = NULL;
 
-	ssplit = ft_split(argv[1], '-');
+	argv[1][6] = 0;
+	ssplit = ft_split(argv[1], argv[2][0]);
 	printf("\ns:%s\n", argv[1]);
 	printf("\n[0]%s\n", ssplit[0]);
 	for (int i = 1; ssplit[i]; i++)
 		printf("\n[%d]%s\n", i, ssplit[i]);
-
 	free(ssplit);
 
 	return (0);
