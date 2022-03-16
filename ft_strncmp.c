@@ -6,11 +6,11 @@
 /*   By: tda-silv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 12:21:10 by tda-silv          #+#    #+#             */
-/*   Updated: 2021/12/27 16:12:55 by tda-silv         ###   ########.fr       */
+/*   Updated: 2022/03/16 12:39:14 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include "libft.h"
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
@@ -28,7 +28,7 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 		if (s2[i])
 			b += s2[i];
 		if (a != b)
-			return (s1[i] - s2[i]);
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 		else
 			i++;
 	}
@@ -45,7 +45,7 @@ int	main (void)
 	int		a = strncmp(tab1 , tab2, 1);
 	int		b = ft_strncmp(tab1 , tab2, 1);
 
-	printf ("\n%d, %d\n\n", a, b);
+	printf ("\n>> : %d\nft : %d\n\n", a, b);
 	return (0);
 }
 */

@@ -1,33 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tda-silv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/29 09:41:44 by tda-silv          #+#    #+#             */
-/*   Updated: 2022/03/16 12:35:56 by tda-silv         ###   ########.fr       */
+/*   Created: 2022/03/16 10:59:24 by tda-silv          #+#    #+#             */
+/*   Updated: 2022/03/16 17:26:42 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_toupper(int c)
+#include "libft.h"
+
+t_list	*ft_lstnew(void *content)
 {
-	if (c >= 'a' && c <= 'z')
-		return (c -= 32);
-	else
-		return (c);
+	t_list	*ln;
+
+	ln = malloc(sizeof(t_list));
+	if (!ln)
+		return (NULL);
+	ln->content = content;
+	ln->next = NULL;
+	return (ln);
 }
 /*
-#include <ctype.h>
 #include <stdio.h>
 
-int	main(void)
+int	main()
 {
-	char	tab[] = "super";
-	
-	tab[2] = ft_toupper(tab[2]);
-	printf("\n%d | %d | %s\n\n", tab[2], toupper(tab[2]), tab);
-	printf("\n%d | %d | %s\n\n", tab[2], ft_toupper(tab[2]), tab);
+	t_list *socrate;
+
+	socrate = ft_lstnew((int *)5);
+	printf("\n%d\n", socrate->content);
+	free(socrate);
 	return (0);
 }
 */

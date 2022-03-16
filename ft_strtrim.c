@@ -6,21 +6,16 @@
 /*   By: tda-silv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 14:11:42 by tda-silv          #+#    #+#             */
-/*   Updated: 2022/03/10 17:41:27 by tda-silv         ###   ########.fr       */
+/*   Updated: 2022/03/16 12:41:38 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
-#include <stdlib.h>
+#include "libft.h"
 
-size_t	ft_strlen(const char *s);
-size_t	ft_strlcpy(char *dst, const char *src, size_t size);
-char	*ft_strdup(const char *s);
-
-static int	ft_setsize_l(char const *s1, char const *set)
+static size_t	ft_setsize_l(char const *s1, char const *set)
 {
-	int	i;
-	int	j;
+	size_t	i;
+	size_t	j;
 
 	if (!s1)
 		return (0);
@@ -39,10 +34,10 @@ static int	ft_setsize_l(char const *s1, char const *set)
 	return (i);
 }
 
-static int	ft_setsize_r(char const *s1, char const *set)
+static size_t	ft_setsize_r(char const *s1, char const *set)
 {
-	int	i;
-	int	j;
+	size_t	i;
+	size_t	j;
 
 	if (!s1)
 		return (0);
@@ -66,7 +61,7 @@ static int	ft_setsize_r(char const *s1, char const *set)
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	char	*copy;
-	int		i;
+	size_t	i;
 
 	if (!s1)
 		return (NULL);
@@ -89,8 +84,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 
 int	main(void)
 {
-	char	s1[] = "-------------t--t---";
-	char	*s11 = ft_strtrim(s1, "");
+	char	s1[] = "-12-3--";
+	char	*s11 = ft_strtrim(s1, "-");
 
 	printf("\n%s\n\n", s11);
 	free(s11);

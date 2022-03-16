@@ -6,11 +6,11 @@
 /*   By: tda-silv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 17:22:17 by tda-silv          #+#    #+#             */
-/*   Updated: 2021/12/28 14:28:26 by tda-silv         ###   ########.fr       */
+/*   Updated: 2022/03/16 12:34:34 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include "libft.h"
 
 static void	part_two(char *d, char *s, size_t n)
 {

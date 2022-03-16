@@ -6,13 +6,11 @@
 /*   By: tda-silv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 12:15:18 by tda-silv          #+#    #+#             */
-/*   Updated: 2021/12/27 12:35:00 by tda-silv         ###   ########.fr       */
+/*   Updated: 2022/03/16 12:42:12 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-
-size_t	ft_strlen(const char *s);
+#include "libft.h"
 
 static void	ft_swap(char *s)
 {

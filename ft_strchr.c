@@ -6,13 +6,11 @@
 /*   By: tda-silv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:22:50 by tda-silv          #+#    #+#             */
-/*   Updated: 2021/12/14 16:24:46 by tda-silv         ###   ########.fr       */
+/*   Updated: 2022/03/16 12:37:41 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
-
-size_t	ft_strlen(const char *s);
+#include "libft.h"
 
 char	*ft_strchr(const char *s, int c)
 {

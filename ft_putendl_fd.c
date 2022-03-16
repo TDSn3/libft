@@ -6,13 +6,11 @@
 /*   By: tda-silv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 12:01:21 by tda-silv          #+#    #+#             */
-/*   Updated: 2021/12/11 15:52:21 by tda-silv         ###   ########.fr       */
+/*   Updated: 2022/03/16 12:44:08 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-size_t	ft_strlen(const char *s);
+#include "libft.h"
 
 void	ft_putendl_fd(char *s, int fd)
 {

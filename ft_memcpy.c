@@ -6,11 +6,11 @@
 /*   By: tda-silv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 16:42:30 by tda-silv          #+#    #+#             */
-/*   Updated: 2021/12/27 15:51:59 by tda-silv         ###   ########.fr       */
+/*   Updated: 2022/03/16 12:33:59 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include "libft.h"
 
 void	*ft_memcpy(void *dest, const void *src, size_t n)
 {

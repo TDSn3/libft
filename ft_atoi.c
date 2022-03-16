@@ -6,16 +6,16 @@
 /*   By: tda-silv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 17:58:31 by tda-silv          #+#    #+#             */
-/*   Updated: 2021/12/11 15:24:33 by tda-silv         ###   ########.fr       */
+/*   Updated: 2022/03/15 13:11:25 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_atoi(const char *nptr)
 {
-	unsigned int	i;
-	unsigned int	nb;
-	long int		final_nb;
-	int				if_is_negative;
+	unsigned int		i;
+	unsigned int		nb;
+	long long int		final_nb;
+	int					if_is_negative;
 
 	i = 0;
 	nb = 0;

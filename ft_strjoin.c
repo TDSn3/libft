@@ -6,15 +6,11 @@
 /*   By: tda-silv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/02 11:41:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2021/12/02 14:11:14 by tda-silv         ###   ########.fr       */
+/*   Updated: 2022/03/16 12:41:26 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <string.h>
-
-size_t	ft_strlen(const char *s);
-size_t	ft_strlcpy(char *dst, const char *src, size_t size);
+#include "libft.h"
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {

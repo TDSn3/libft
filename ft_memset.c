@@ -6,11 +6,11 @@
 /*   By: tda-silv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/23 16:21:52 by tda-silv          #+#    #+#             */
-/*   Updated: 2021/11/24 12:04:17 by tda-silv         ###   ########.fr       */
+/*   Updated: 2022/03/16 12:32:39 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include "libft.h"
 
 void	*ft_memset(void *s, int c, size_t n)
 {

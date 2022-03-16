@@ -1,33 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tda-silv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/29 09:41:44 by tda-silv          #+#    #+#             */
-/*   Updated: 2022/03/16 12:35:56 by tda-silv         ###   ########.fr       */
+/*   Created: 2022/03/16 13:59:36 by tda-silv          #+#    #+#             */
+/*   Updated: 2022/03/16 17:12:28 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_toupper(int c)
+#include "libft.h"
+
+int	ft_lstsize(t_list *lst)
 {
-	if (c >= 'a' && c <= 'z')
-		return (c -= 32);
-	else
-		return (c);
+	t_list	*nextl;
+	size_t	i;
+
+	i = 0;
+	nextl = lst;
+	while (nextl)
+	{
+		nextl = nextl->next;
+		i++;
+	}
+	return (i);
 }
 /*
-#include <ctype.h>
 #include <stdio.h>
 
-int	main(void)
+int	main()
 {
-	char	tab[] = "super";
-	
-	tab[2] = ft_toupper(tab[2]);
-	printf("\n%d | %d | %s\n\n", tab[2], toupper(tab[2]), tab);
-	printf("\n%d | %d | %s\n\n", tab[2], ft_toupper(tab[2]), tab);
+	t_list *a;
+	t_list *b;
+	t_list *c;
+
+	a = ft_lstnew((int *)1);
+	b = ft_lstnew((int *)2);
+	c = ft_lstnew((int *)3);
+
+	a->next = b;
+	b->next = c;
+
+	printf ("\n%d | %d | %d\n", a->next, b->next, c->next);
+
+	printf("\n%d\n", ft_lstsize(a));
 	return (0);
 }
 */

@@ -6,14 +6,11 @@
 /*   By: tda-silv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 11:15:35 by tda-silv          #+#    #+#             */
-/*   Updated: 2021/12/13 13:26:21 by tda-silv         ###   ########.fr       */
+/*   Updated: 2022/03/16 12:40:36 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <stddef.h>
-
-void	ft_bzero(void *s, size_t n);
+#include "libft.h"
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {
