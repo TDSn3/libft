@@ -1,34 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tda-silv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/16 17:19:34 by tda-silv          #+#    #+#             */
-/*   Updated: 2022/03/17 17:47:09 by tda-silv         ###   ########.fr       */
+/*   Created: 2022/03/17 15:19:08 by tda-silv          #+#    #+#             */
+/*   Updated: 2022/03/17 17:47:06 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstdelone(t_list *lst, void (*del)(void*))
-{
-	if (del)
-		(*del)(lst->content);
-	if (lst)
-		free(lst);
-}
-/*
-#include <stdio.h>
-
 //----------------------
 void	del(void *lst)
 {
-//	lst->content = NULL;
-//	lst->next = NULL;
+	lst = NULL;
 }
 //----------------------
+
+void	ft_lstclear(t_list **lst, void (*del)(void*))
+{
+	t_list *suprl;
+
+	suprl = ft_lstlast(*lst);
+	free(suprl);
+	suprl->next = NULL;
+	*suprl = NULL;
+
+//	while (ft_lstlast(*lst) != *lst)
+//	{
+//		
+//	}
+}
+
+#include <stdio.h>
 
 int	main()
 {
@@ -43,16 +49,16 @@ int	main()
 	ft_lstadd_back(&a, b);
 	ft_lstadd_back(&a, c);
 
-	printf ("\na : %d | b : %d | c : %d", a, b, c);
+	printf ("\na : %d | b : %d | c : %d | nbr : %d", a, b, c, ft_lstsize(a));
 	printf ("\n%d | %d | %d", a->content, b->content, c->content);
 	printf ("\n%d | %d | %d\n", a->next, b->next, c->next);
 
-	ft_lstdelone(b, &del);
+	ft_lstclear(&b, &del);
 
-	printf ("\na : %d | b : %d | c : %d", a, b, c);
+	printf ("\na : %d | b : %d | c : %d | nbr : %d", a, b, c, ft_lstsize(a));
 	printf ("\n%d | %d | %d", a->content, b->content, c->content);
 	printf ("\n%d | %d | %d\n", a->next, b->next, c->next);
-	
+
+
 	return (0);
 }
-*/
