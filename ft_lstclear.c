@@ -12,29 +12,29 @@
 
 #include "libft.h"
 
+void	ft_lstclear(t_list **lst, void (*del)(void*))
+{
+	t_list *copyl;
+
+	copyl = *lst;
+	while (copyl)
+	{
+		*lst = copyl->next;
+		(*del)(copyl->content);
+		free(copyl);
+		copyl = *lst;
+	}
+	*lst = NULL;
+}
+/*
+#include <stdio.h>
+
 //----------------------
 void	del(void *lst)
 {
 	lst = NULL;
 }
 //----------------------
-
-void	ft_lstclear(t_list **lst, void (*del)(void*))
-{
-	t_list *suprl;
-
-	suprl = ft_lstlast(*lst);
-	free(suprl);
-	suprl->next = NULL;
-	*suprl = NULL;
-
-//	while (ft_lstlast(*lst) != *lst)
-//	{
-//		
-//	}
-}
-
-#include <stdio.h>
 
 int	main()
 {
@@ -55,10 +55,8 @@ int	main()
 
 	ft_lstclear(&b, &del);
 
-	printf ("\na : %d | b : %d | c : %d | nbr : %d", a, b, c, ft_lstsize(a));
-	printf ("\n%d | %d | %d", a->content, b->content, c->content);
-	printf ("\n%d | %d | %d\n", a->next, b->next, c->next);
-
+	printf ("\n%d %d\n", b, c);
 
 	return (0);
 }
+*/
