@@ -6,7 +6,7 @@
 /*   By: tda-silv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 15:19:08 by tda-silv          #+#    #+#             */
-/*   Updated: 2022/03/17 17:47:06 by tda-silv         ###   ########.fr       */
+/*   Updated: 2022/03/19 17:47:46 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
-	t_list *copyl;
+	t_list	*copyl;
 
 	copyl = *lst;
 	while (copyl)

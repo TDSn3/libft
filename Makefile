@@ -6,7 +6,7 @@
 #    By: tda-silv <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/11 16:59:26 by tda-silv          #+#    #+#              #
-#    Updated: 2022/03/15 10:35:47 by tda-silv         ###   ########.fr        #
+#    Updated: 2022/03/19 19:30:31 by tda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,19 @@ SRC = ./ft_isalpha.c \
 	  ./ft_putendl_fd.c \
 	  ./ft_putnbr_fd.c \
 
+BNS = ./ft_lstnew.c \
+	  ./ft_lstadd_front.c \
+	  ./ft_lstsize.c \
+	  ./ft_lstlast.c \
+	  ./ft_lstadd_back.c \
+	  ./ft_lstdelone.c \
+	  ./ft_lstclear.c \
+	  ./ft_lstiter.c \
+	  ./ft_lstmap.c \
+
 OBJ = $(SRC:.c=.o)
+
+OBJBNS = $(BNS:.c=.o)
 
 all: $(NAME)
 
@@ -61,12 +73,15 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	ar rc $@ libft.h $^
 
+bonus: $(OBJ) $(OBJBNS)
+	ar rc $(NAME) libft.h $^
+
 clean:
-	rm -f $(OBJ)
+	rm -f $(OBJ) $(OBJBNS)
 
 fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all bonus clean fclean re
