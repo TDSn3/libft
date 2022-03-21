@@ -6,7 +6,7 @@
 /*   By: tda-silv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 16:18:44 by tda-silv          #+#    #+#             */
-/*   Updated: 2022/03/19 22:14:18 by tda-silv         ###   ########.fr       */
+/*   Updated: 2022/03/21 09:13:42 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,15 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 {
 	t_list	*copyl;
 
-	if (lst && *lst && new)
+	if (lst)
 	{
-		copyl = *lst;
-		while (copyl->next)
-			copyl = copyl->next;
-		copyl->next = new;
+		if (!*lst)
+			*lst = new;
+		else
+		{
+			copyl = ft_lstlast(*lst);
+			copyl->next = new;
+		}
 	}
 }
 /*
@@ -44,7 +47,8 @@ int	main()
 	a->next = b;
 
 	printf ("\na : %d | b : %d | c : %d", a, b, c);
-	printf ("\n%d | %d | %d", *(int *)a->content, *(int *)b->content, *(int *)c->content);
+	printf ("\n%d | %d | %d", *(int *)
+a->content, *(int *)b->content, *(int *)c->content);
 	printf ("\n%d | | \n", a->next);
 
 	printf("\n-----------------\n");
@@ -53,7 +57,8 @@ int	main()
 
 	printf("\n%d\n", ft_lstsize(a));
 	printf ("\na : %d | b : %d | c : %d", a, b, c);
-	printf ("\n%d | %d | %d", *(int *)a->content, *(int *)b->content, *(int *)c->content);
+	printf ("\n%d | %d | %d", *(int *)
+a->content, *(int *)b->content, *(int *)c->content);
 	printf ("\n%d | %d | \n", a->next, b->next);
 
 	free(a);

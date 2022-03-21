@@ -6,7 +6,7 @@
 /*   By: tda-silv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 16:44:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2022/03/16 12:22:21 by tda-silv         ###   ########.fr       */
+/*   Updated: 2022/03/21 13:31:56 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ static int	ft_split_pii(size_t nbc, char **ssplit, char const *s, char c)
 			{
 				while (i > 0)
 					free(ssplit[i--]);
+				free(ssplit[0]);
 				free(ssplit);
 				return (1);
 			}
@@ -103,13 +104,7 @@ char	**ft_split(char const *s, char c)
 	if (!s)
 		return (NULL);
 	if (!s[0])
-	{
-		ssplit = malloc(1);
-		if (!ssplit)
-			return (NULL);
-		ssplit[0] = NULL;
-		return (ssplit);
-	}
+		return ((char **)ft_strdup(""));
 	nbc = ft_nbc(s, c);
 	ssplit = (char **) malloc(sizeof (char *) * nbc);
 	if (!ssplit)

@@ -6,7 +6,7 @@
 /*   By: tda-silv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/19 12:04:28 by tda-silv          #+#    #+#             */
-/*   Updated: 2022/03/19 17:51:33 by tda-silv         ###   ########.fr       */
+/*   Updated: 2022/03/21 11:44:08 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,25 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	t_list	*copyl;
 	t_list	*copyn;
 
-	if (!lst)
+	copyn = NULL;
+	if (!lst || !f)
 		return (NULL);
-	f(lst->content);
-	copyl = ft_lstnew(lst->content);
+	copyl = ft_lstnew(f(lst->content));
 	if (!copyl)
 	{
 		ft_lstclear(&copyl, del);
 		return (NULL);
 	}
-	while (lst->next)
+	lst = lst->next;
+	while (lst)
 	{
-		lst = lst->next;
-		f(lst->content);
-		ft_lstadd_back(&copyl, copyn = ft_lstnew(lst->content));
+		ft_lstadd_back(&copyl, copyn = ft_lstnew(f(lst->content)));
 		if (!copyn)
 		{
 			ft_lstclear(&copyl, del);
 			return (NULL);
 		}
+		lst = lst->next;
 	}
 	return (copyl);
 }
