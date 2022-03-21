@@ -6,7 +6,7 @@
 /*   By: tda-silv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 16:44:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2022/03/21 13:31:56 by tda-silv         ###   ########.fr       */
+/*   Updated: 2022/03/21 16:03:36 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,10 @@ static int	ft_split_pii(size_t nbc, char **ssplit, char const *s, char c)
 			ssplit[i] = malloc (ft_cstrlen(s + j, c));
 			if (!ssplit[i])
 			{
-				while (i > 0)
-					free(ssplit[i--]);
-				free(ssplit[0]);
-				free(ssplit);
+				while (i-- > 0)
+					free(ssplit[i]);
+				if (ssplit[0])
+					free(ssplit[0]);
 				return (1);
 			}
 			j += ft_cstrlen(s + j, c);
@@ -108,13 +108,15 @@ char	**ft_split(char const *s, char c)
 	nbc = ft_nbc(s, c);
 	ssplit = (char **) malloc(sizeof (char *) * nbc);
 	if (!ssplit)
-	{
-		free(ssplit);
 		return (NULL);
-	}
 	if (nbc > 1)
+	{
 		if (ft_split_pii(nbc - 1, ssplit, s, c))
+		{
+			free(ssplit);
 			return (NULL);
+		}
+	}
 	ssplit[ft_split_piii(nbc - 1, ssplit, s, c)] = 0;
 	return (ssplit);
 }
@@ -131,6 +133,8 @@ int	main(int argc, char **argv)
 	printf("\n[0]%s\n", ssplit[0]);
 	for (int i = 1; ssplit[i]; i++)
 		printf("\n[%d]%s\n", i, ssplit[i]);
+//	for (int i = 0 ;ssplit[11][i]; i++)
+//		printf("\n%c\n",ssplit[11][i]);
 	free(ssplit);
 
 	return (0);
