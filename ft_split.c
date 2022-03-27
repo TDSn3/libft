@@ -6,21 +6,11 @@
 /*   By: tda-silv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 16:44:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2022/03/21 16:03:36 by tda-silv         ###   ########.fr       */
+/*   Updated: 2022/03/27 19:07:30 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-static size_t	ft_cstrlen(char const *s, char c)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i] && s[i] != c)
-		i++;
-	return (i + 1);
-}
 
 static size_t	ft_nbc(char const *s, char c)
 {
@@ -29,99 +19,98 @@ static size_t	ft_nbc(char const *s, char c)
 
 	i = 0;
 	j = 1;
-	if (!s)
-		return (1);
 	while (s[i] && s[i] == c)
 		i++;
 	while (s[i])
 	{
-		if (s[i] == c)
+		if (s[i] != c)
 		{
 			j++;
-			while (s[i] && s[i] == c)
+			while (s[i] && s[i] != c)
 				i++;
 			continue ;
 		}
 		i++;
 	}
-	if (s[i - 1] != c)
-		j++;
 	return (j);
 }
 
-static size_t	ft_split_piii(size_t nbc, char **ssplit, char const *s, char c)
+static size_t	ft_skip_o(char const *s, char c, size_t *pos)
 {
 	size_t	i;
-	size_t	j;
 
 	i = 0;
-	j = 0;
-	while (i < nbc)
+	if (*(s + *pos) && *(s + *pos) == c)
+		while (*(s + *pos) && *(s + *pos) == c)
+			*pos += 1;
+	while (*(s + *pos) && *(s + *pos) != c)
 	{
-		while (*(s + j) == c)
-			j++;
-		ft_strlcpy(ssplit[i], s + j, ft_cstrlen(s + j, c));
-		j += ft_cstrlen(s + j, c);
+		*pos += 1;
 		i++;
 	}
 	return (i);
 }
 
-static int	ft_split_pii(size_t nbc, char **ssplit, char const *s, char c)
+static size_t	ft_skip_c(char const *s, char c, size_t *pos)
 {
 	size_t	i;
-	size_t	j;
 
 	i = 0;
-	j = 0;
-	while (s[j] && i < nbc)
+	while (*(s + *pos) && *(s + *pos) == c)
+		*pos += 1;
+	while ((s + *pos)[i] && (s + *pos)[i] != c)
+		i++;
+	return (i);
+}
+
+void	ft_split_pii(char const *s, char c, size_t x, char **ssplit)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < ft_nbc(s, c) - 1)
 	{
-		if (s[j] != c)
+		ssplit[i] = malloc(ft_skip_o(s, c, &x) + 1);
+		if (!ssplit[i])
 		{
-			ssplit[i] = malloc (ft_cstrlen(s + j, c));
-			if (!ssplit[i])
-			{
-				while (i-- > 0)
-					free(ssplit[i]);
-				if (ssplit[0])
-					free(ssplit[0]);
-				return (1);
-			}
-			j += ft_cstrlen(s + j, c);
-			i++;
+			while (i-- > 0)
+				free(ssplit[i]);
+			free(ssplit);
 		}
-		else
-			j++;
+		i++;
 	}
-	return (0);
 }
 
 char	**ft_split(char const *s, char c)
 {
 	char	**ssplit;
-	size_t	nbc;
+	size_t	x;
+	size_t	y;
+	size_t	i;
 
+	x = 0;
+	y = 0;
+	i = 0;
 	if (!s)
 		return (NULL);
-	if (!s[0])
-		return ((char **)ft_strdup(""));
-	nbc = ft_nbc(s, c);
-	ssplit = (char **) malloc(sizeof (char *) * nbc);
+	ssplit = (char **) malloc(sizeof (char *) * ft_nbc(s, c));
 	if (!ssplit)
 		return (NULL);
-	if (nbc > 1)
+	ft_split_pii(s, c, x, ssplit);
+	while (i < ft_nbc(s, c) - 1)
 	{
-		if (ft_split_pii(nbc - 1, ssplit, s, c))
+		if (*(s + y))
 		{
-			free(ssplit);
-			return (NULL);
+			ft_strlcpy(ssplit[i], s + y, ft_skip_c(s, c, &y) + 1);
+			ft_skip_o(s, c, &y);
 		}
+		i++;
 	}
-	ssplit[ft_split_piii(nbc - 1, ssplit, s, c)] = 0;
+	ssplit[ft_nbc(s, c) - 1] = 0;
 	return (ssplit);
 }
 /*
-#include <stdio.h>
+//#include <stdio.h>
 
 int	main(int argc, char **argv)
 {
@@ -129,14 +118,28 @@ int	main(int argc, char **argv)
 	char	**ssplit = NULL;
 
 	ssplit = ft_split(argv[1], argv[2][0]);
+	printf("\n--------------------\n");
 	printf("\ns:%s\nc:%c\n", argv[1], argv[2][0]);
 	printf("\n[0]%s\n", ssplit[0]);
-	for (int i = 1; ssplit[i]; i++)
-		printf("\n[%d]%s\n", i, ssplit[i]);
-//	for (int i = 0 ;ssplit[11][i]; i++)
-//		printf("\n%c\n",ssplit[11][i]);
-	free(ssplit);
+	
+	int i = 1;
+	while (ssplit[i])
+	{
+		printf("[%d]%s\n", i, ssplit[i]);
+		i++;
+	}
 
+////FREE////
+
+	printf("\n--------------------\n");
+	while (i >= 0)
+	{
+		free(ssplit[i]);
+		printf("\n[%d] is free", i);
+		i--;
+	}
+	printf("\n");
+	free(ssplit);
 	return (0);
 }
 */
