@@ -6,7 +6,7 @@
 /*   By: tda-silv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 16:44:13 by tda-silv          #+#    #+#             */
-/*   Updated: 2022/03/27 19:07:30 by tda-silv         ###   ########.fr       */
+/*   Updated: 2022/03/28 12:49:12 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static size_t	ft_skip_c(char const *s, char c, size_t *pos)
 	return (i);
 }
 
-void	ft_split_pii(char const *s, char c, size_t x, char **ssplit)
+static void	ft_split_pii(char const *s, char c, size_t x, char **ssplit)
 {
 	size_t	i;
 
@@ -110,13 +110,14 @@ char	**ft_split(char const *s, char c)
 	return (ssplit);
 }
 /*
-//#include <stdio.h>
+#include <stdio.h>
 
 int	main(int argc, char **argv)
 {
 //	char	s[] = "";
 	char	**ssplit = NULL;
 
+	(void)argc;
 	ssplit = ft_split(argv[1], argv[2][0]);
 	printf("\n--------------------\n");
 	printf("\ns:%s\nc:%c\n", argv[1], argv[2][0]);
