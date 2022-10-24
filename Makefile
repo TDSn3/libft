@@ -6,7 +6,7 @@
 #    By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/11 16:59:26 by tda-silv          #+#    #+#              #
-#    Updated: 2022/10/24 20:51:25 by tda-silv         ###   ########.fr        #
+#    Updated: 2022/10/24 21:05:28 by tda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,6 +54,7 @@ SRC = ./ft_isalpha.c \
 	  ./ft_putendl_fd.c \
 	  ./ft_putnbr_fd.c \
 	  ./get_next_line/get_next_line_bonus.c \
+	  ./my_strjoin_free.c \
 	  $(addprefix ./t_dl/, \
 	  	dl_add_back.c \
 		dl_clear_one.c \
