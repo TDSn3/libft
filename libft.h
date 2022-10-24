@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tda-silv <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 18:27:51 by tda-silv          #+#    #+#             */
-/*   Updated: 2022/03/19 17:53:40 by tda-silv         ###   ########.fr       */
+/*   Updated: 2022/10/24 20:53:54 by tda-silv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stddef.h>
+# include <fcntl.h>
+# include "./get_next_line/get_next_line_bonus.h"
+# include "./t_li/t_li.h"
+# include "./t_dl/t_dl.h"
 
 typedef struct s_list
 {

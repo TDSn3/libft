@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tda-silv <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/11 16:59:26 by tda-silv          #+#    #+#              #
-#    Updated: 2022/04/02 12:10:47 by tda-silv         ###   ########.fr        #
+#    Updated: 2022/10/24 20:51:25 by tda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,9 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
 NAME = libft.a
+
+HEADERS = ./libft.h \
+		  ./get_next_line/get_next_line_bonus.h \
 
 SRC = ./ft_isalpha.c \
 	  ./ft_isdigit.c \
@@ -50,6 +53,25 @@ SRC = ./ft_isalpha.c \
 	  ./ft_putstr_fd.c \
 	  ./ft_putendl_fd.c \
 	  ./ft_putnbr_fd.c \
+	  ./get_next_line/get_next_line_bonus.c \
+	  $(addprefix ./t_dl/, \
+	  	dl_add_back.c \
+		dl_clear_one.c \
+		dl_clear.c \
+		dl_find_content.c \
+		dl_last.c \
+		dl_new.c \
+		dl_size.c \
+	  ) \
+	  $(addprefix ./t_li/, \
+	  	li_add_back.c \
+		li_clear_one.c \
+		li_clear.c \
+		li_find_content.c \
+		li_last.c \
+		li_new.c \
+		li_size.c \
+	  ) \
 
 BNS = ./ft_lstnew.c \
 	  ./ft_lstadd_front.c \
@@ -65,21 +87,24 @@ OBJ = $(SRC:.c=.o)
 
 OBJBNS = $(BNS:.c=.o)
 
-all: $(NAME)
+all: $(NAME) $(HEADERS)
 
 %.o : %.c
-	$(CC) $(CFLAGS) -o $@ -c $<
+	$(CC) $(CFLAGS) -Ift_printf -o $@ -c $<
 
 $(NAME): $(OBJ)
+	cd ./ft_printf; make
 	ar rc $@ libft.h $^
 
 bonus: $(OBJ) $(OBJBNS)
-	ar rc $(NAME) libft.h $^
+	ar rc -Lft_printf -lftprintf $(NAME) libft.h $^
 
 clean:
+	cd ./ft_printf; make clean
 	rm -f $(OBJ) $(OBJBNS)
 
 fclean: clean
+	cd ./ft_printf; make fclean
 	rm -f $(NAME)
 
 re: fclean all
