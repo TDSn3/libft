@@ -6,7 +6,7 @@
 #    By: tda-silv <tda-silv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/11 16:59:26 by tda-silv          #+#    #+#              #
-#    Updated: 2022/10/25 15:22:00 by tda-silv         ###   ########.fr        #
+#    Updated: 2022/10/25 16:08:39 by tda-silv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ NAME = libft.a
 
 HEADERS = ./libft.h \
 		  ./get_next_line/get_next_line_bonus.h \
+		  ./ft_printf/ft_printf.h \
 
 SRC = ./ft_isalpha.c \
 	  ./ft_isdigit.c \
@@ -116,11 +117,11 @@ all: $(NAME) $(HEADERS)
 	$(CC) $(CFLAGS) -o $@ -c $<
 
 $(NAME): $(OBJ)
-	ar rc $@ libft.h $^
+	ar rc $@ $^
 	ranlib $(NAME)
 
 bonus: $(OBJ) $(OBJBNS)
-	ar rc $(NAME) libft.h $^
+	ar rc $(NAME) $^
 	ranlib $(NAME)
 
 clean:
